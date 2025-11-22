@@ -1,21 +1,22 @@
-let display = document.getElementById('display');
-
-function appendNumber(number) {
-  display.value += number;
-}
-
-function appendOperator(operator) {
-  display.value += ' ' + operator + ' ';
+function appendValue(value) {
+    document.getElementById("display").value += value;
 }
 
 function clearDisplay() {
-  display.value = '';
+    document.getElementById("display").value = "";
 }
 
-function calculateResult() {
-  try {
-    display.value = eval(display.value.replace(/[^-()\d/*+.]/g, '')); // Ensure safe eval
-  } catch (error) {
-    display.value = 'Error';
-  }
+function deleteLast() {
+    let display = document.getElementById("display").value;
+    document.getElementById("display").value = display.slice(0, -1);
+}
+
+function calculate() {
+    let expression = document.getElementById("display").value;
+    try {
+        let result = eval(expression);
+        document.getElementById("display").value = result;
+    } catch {
+        document.getElementById("display").value = "Error";
+    }
 }
